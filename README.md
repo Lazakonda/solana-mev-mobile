@@ -1,6 +1,6 @@
-# memelab.
+# Kara Delik — Token stüdyosu
 
-A Turkish-language meme coin concept prototype. The current launch controls are a visual demo: no wallet transactions, token deployments, or liquidity pools are created.
+Kara Delik’in uzay temalı kontrol paneli görsel dilinden esinlenen Türkçe memecoin konsept prototipi. Mevcut launch kontrolleri görsel demodur; cüzdan işlemi, token dağıtımı veya likidite havuzu oluşturmaz.
 
 ## Password setup
 
