@@ -23,15 +23,15 @@ jobs:
         with:
           node-version: 22
       - run: npm install
-      - name: Derive password hash from repository secret
+      - name: Build password-gated site
         env:
           SITE_PASSWORD: ${{ secrets.SITE_PASSWORD }}
         run: |
           if [ -z "$SITE_PASSWORD" ]; then echo "::error::Set the SITE_PASSWORD Actions secret before deploying."; exit 1; fi
-          echo "VITE_SITE_PASSWORD_SHA256=$(node -e 'process.stdout.write(require("node:crypto").createHash("sha256").update(process.env.SITE_PASSWORD).digest("hex"))')" >> "$GITHUB_ENV"
-          unset SITE_PASSWORD
-      - run: npm run build
+          VITE_SITE_PASSWORD_SHA256="$(node -e 'process.stdout.write(require("node:crypto").createHash("sha256").update(process.env.SITE_PASSWORD).digest("hex"))')" npm run build
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
