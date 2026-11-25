@@ -23,12 +23,8 @@ jobs:
         with:
           node-version: 22
       - run: npm install
-      - name: Build password-gated site
-        env:
-          SITE_PASSWORD: ${{ secrets.SITE_PASSWORD }}
-        run: |
-          if [ -z "$SITE_PASSWORD" ]; then echo "::error::Set the SITE_PASSWORD Actions secret before deploying."; exit 1; fi
-          VITE_SITE_PASSWORD_SHA256="$(node -e 'process.stdout.write(require("node:crypto").createHash("sha256").update(process.env.SITE_PASSWORD).digest("hex"))')" npm run build
+      - name: Build public site
+        run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -41,4 +37,3 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-
