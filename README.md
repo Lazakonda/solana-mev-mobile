@@ -15,14 +15,10 @@ An English-language Solana token studio with live DEX Screener discovery, illust
 
 ## Limits and security
 
-- GitHub Pages is a static host. A client-side password gate is only a casual preview barrier; it cannot protect secrets or enforce fee exemptions. Do not use it as account security.
+- The studio is public and does not require an access password. A static page cannot securely enforce private owner-only fee exemptions.
 - The app currently has no configured commission. A commission destination and rate would need to be supplied before implementing that part; never share a wallet seed phrase or private key.
 - Public market data may be delayed, incomplete, or unavailable. DEX Screener indexing can take time after a new pool is created.
 - No liquidity is guaranteed to be recoverable at its original value. Pool prices move, and liquidity removal returns the assets currently in the pool, less fees and price impact.
-
-## Password setup
-
-For a casual preview gate, add an Actions secret named `SITE_PASSWORD` under **Settings → Secrets and variables → Actions**. The deployment workflow hashes it during the build. This does not make a public static site private.
 
 ## Deploy
 
@@ -31,4 +27,5 @@ The workflow in `.github/workflows/pages.yml` builds and publishes on pushes to 
 ## Local preview
 
 Run `npm install` and `npm run dev`. To unlock locally, set `VITE_SITE_PASSWORD_SHA256` to the lowercase SHA-256 digest of the password in the local environment.
+
 
